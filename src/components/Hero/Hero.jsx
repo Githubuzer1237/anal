@@ -7,7 +7,6 @@ const Hero = () => {
   const [highScore, setHighScore] = useState(0);
   const [timer, setTimer] = useState(30);
   const [gameObjects, setGameObjects] = useState([]);
-  const [showModal, setShowModal] = useState(false);
 
   const imageSources = [
     '/gameimg.gif',
@@ -16,35 +15,26 @@ const Hero = () => {
     '/gameimg4.gif',
     '/gameimg5.gif',
     '/gameimg6.png',
-    '/gameimg7.gif',
+    '/gameimg7.gif',  
     '/gameimg8.png',
     '/gameimg9.png',
     '/gameimg10.png',
-  ]; // Твои 10 картинок
+  ];
 
-  // Функция для начала игры
   const startGame = () => {
     setIsPlaying(true);
     setScore(0);
     setTimer(30);
-    setGameObjects(generateGameObjects(imageSources)); // Генерация объектов только из твоих картинок
-    setShowModal(false); // Закрыть модалку при начале новой игры
+    setGameObjects(generateGameObjects(imageSources));
   };
 
-  // Функция для окончания игры
-  const endGame = () => {
-    setIsPlaying(false);
-    if (score > highScore) {
-      setHighScore(score);
-    }
-    setGameObjects([]);
-    setShowModal(true); // Показать модальное окно с результатами
-  };
-
-  // useEffect для сброса состояния при монтировании компонента
   useEffect(() => {
-    setShowModal(false); // Сбрасываем состояние модалки при перезагрузке страницы
-  }, []);
+    if (isPlaying && timer === 0) {
+      endGame();
+    } else if (isPlaying && gameObjects.length === 0) {
+      endGame();
+    }
+  }, [isPlaying, timer, gameObjects]);
 
   useEffect(() => {
     if (isPlaying && timer > 0) {
@@ -52,23 +42,15 @@ const Hero = () => {
         setTimer((prev) => prev - 1);
       }, 1000);
       return () => clearInterval(countdown);
-    } else if (timer === 0 || gameObjects.length === 0) { // Игра заканчивается, когда таймер или объекты заканчиваются
-      endGame();
     }
-  }, [isPlaying, timer, gameObjects]);
+  }, [isPlaying, timer]);
 
-  // Функция для генерации объектов
   const generateGameObjects = (images) => {
-    const gameAreaWidth = window.innerWidth * 0.8;
-    const gameAreaHeight = window.innerHeight * 0.8;
-    const startX = (window.innerWidth - gameAreaWidth) / 2;
-    const startY = (window.innerHeight - gameAreaHeight) / 2;
-
     return images.map((src, index) => ({
       id: index,
       src,
-      x: startX + Math.random() * gameAreaWidth,
-      y: startY + Math.random() * gameAreaHeight,
+      x: Math.random() * (window.innerWidth - 100),
+      y: Math.random() * (window.innerHeight - 100),
       speedX: Math.random() * 5 - 2.5,
       speedY: Math.random() * 5 - 2.5,
     }));
@@ -85,7 +67,6 @@ const Hero = () => {
           }))
         );
       }, 50);
-
       return () => clearInterval(interval);
     }
   }, [isPlaying]);
@@ -93,79 +74,64 @@ const Hero = () => {
   const handleObjectClick = (id) => {
     setGameObjects((prev) => prev.filter((obj) => obj.id !== id));
     setScore((prev) => prev + 1);
-
-    if (gameObjects.length === 1) { // Если после клика остался последний объект
-      endGame(); // Завершаем игру
-    }
   };
 
-  const closeModal = () => {
-    setShowModal(false);
+  const endGame = () => {
+    setIsPlaying(false);
+    if (score > highScore) {
+      setHighScore(score);
+    }
+    setGameObjects([]);
   };
 
   return (
-    <div
-      className="container"
-      style={{ cursor: isPlaying ? 'url(/cursor.png), auto' : 'auto' }} // Применяем кастомный курсор только во время игры
-    >
-      {!isPlaying ? (
-        <div className={s.wrapper}>
-          <img className={s.anal} src="/analogue.png" alt="" />
-          <div className={s.text}>
-            <p>
-              A seriously{' '}
-              <button className={s.playful_btn} onClick={startGame}>
-                PLAYFUL
-              </button>{' '}
-              <span className={s.brand}>brand</span> and motion{' '}
-              <img className={s.img} src="/strelks.svg" alt="" />
-              <br />
-              <br />
-              <span className={s.studio}>studio</span> combining fresh-forward
-              thinking <br />
-              and beautifully crafted creative to help <br />
-              brands build{' '}
-              <img className={s.img} src="finger.svg" alt="" />
-              fandom{' '}
-              <span className={s.world}>
-                worldwide <img className={s.orbit} src="orbit.gif" alt="" />{' '}
-              </span>
-            </p>
-          </div>
+    <div className="container">
+      <div className={s.wrapper}>
+        <img className={s.anal} src="/analogue.png" alt="" />
+        <div className={s.text}>
+          <p>
+            A seriously{' '}
+            <button className={s.playful_btn} onClick={startGame}>
+              PLAYFUL
+            </button>{' '}
+            <span className={s.brand}>brand</span> and motion{' '}
+            <img className={s.img} src="/strelks.svg" alt="" />
+            <br />
+            <br />
+            <span className={s.studio}>studio</span> combining fresh-forward
+            thinking <br />
+            and beautifully crafted creative to help <br />
+            brands build{' '}
+            <img className={s.img} src="finger.svg" alt="" />
+            fandom{' '}
+            <span className={s.world}>
+              worldwide <img className={s.orbit} src="orbit.gif" alt="" />{' '}
+            </span>
+          </p>
         </div>
-      ) : (
-        <div className={s.wrapper}>
+      </div>
+      {isPlaying && (
+        <div className={s.gameLayer}>
           <div className={s.scoreBoard}>
             <p>Score: {score}</p>
-            <p>High Score: {highScore}</p>
+            <p className={s.highScore}>BEST: {highScore}</p>
             <p>Time: {timer}s</p>
-            <button onClick={endGame}>Exit</button>
+            <button className={s.playful_btn} onClick={endGame}>Exit</button>
           </div>
-          <div className={s.gameArea}>
-            {gameObjects.map((obj) => (
-              <img
-                key={obj.id}
-                src={obj.src}
-                alt={`game object ${obj.id}`}
-                className={s.gameObject}
-                style={{
-                  left: obj.x,
-                  top: obj.y,
-                  position: 'absolute',
-                }}
-                onClick={() => handleObjectClick(obj.id)}
-              />
-            ))}
-          </div>
-        </div>
-      )}
-      {showModal && (
-        <div className={s.modal}>
-          <div className={s.modalContent}>
-            <p>Your score: {score}</p>
-            <p>High Score: {highScore}</p>
-            <button onClick={closeModal}>Close</button>
-          </div>
+          {gameObjects.map((obj) => (
+            <img
+              key={obj.id}
+              src={obj.src}
+              alt={`game object ${obj.id}`}
+              className={s.gameObject}
+              style={{
+                left: obj.x,
+                top: obj.y,
+                position: 'absolute',
+              }}
+              onClick={() => handleObjectClick(obj.id)}
+            />
+          ))}
         </div>
       )}
     </div>
