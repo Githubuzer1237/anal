@@ -1,3 +1,6 @@
+
+
+
 import React, { useState, useEffect } from 'react';
 import s from './Hero.module.scss';
 
@@ -5,8 +8,9 @@ const Hero = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [score, setScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-  const [timer, setTimer] = useState(30);
+  const [timer, setTimer] = useState(10);
   const [gameObjects, setGameObjects] = useState([]);
+  const [fragments, setFragments] = useState([]);
 
   const imageSources = [
     '/gameimg.gif',
@@ -15,7 +19,7 @@ const Hero = () => {
     '/gameimg4.gif',
     '/gameimg5.gif',
     '/gameimg6.png',
-    '/gameimg7.gif',  
+    '/gameimg7.gif',
     '/gameimg8.png',
     '/gameimg9.png',
     '/gameimg10.png',
@@ -24,8 +28,41 @@ const Hero = () => {
   const startGame = () => {
     setIsPlaying(true);
     setScore(0);
-    setTimer(30);
+    setTimer(10);
     setGameObjects(generateGameObjects(imageSources));
+  };
+
+  const generateGameObjects = (images) => {
+    return images.map((src, index) => ({
+      id: index,
+      src,
+      x: Math.random() * (1000 - 100),
+      y: Math.random() * (400 - 100),
+      speedX: Math.random() * 15 - 15,
+      speedY: Math.random() * 15 - 15,
+    }));
+  }; 
+
+  const createFragments = (x, y, src) => {
+    const fragmentCount = 8; 
+    let newFragments = [];
+    for (let i = 0; i < fragmentCount; i++) {
+      newFragments.push({
+        id: Date.now() + i, 
+        x: x + Math.random() * 50 - 25, 
+        y: y + Math.random() * 50 - 25,
+        src: src,
+        speedX: Math.random() * 5 - 2.5,
+        speedY: Math.random() * 5 - 2.5,
+      });
+    }
+    setFragments((prev) => [...prev, ...newFragments]);
+  };
+
+  const handleObjectClick = (id, x, y, src) => {
+    setGameObjects((prev) => prev.filter((obj) => obj.id !== id));
+    setScore((prev) => prev + 2);
+    createFragments(x, y, src); 
   };
 
   useEffect(() => {
@@ -45,25 +82,14 @@ const Hero = () => {
     }
   }, [isPlaying, timer]);
 
-  const generateGameObjects = (images) => {
-    return images.map((src, index) => ({
-      id: index,
-      src,
-      x: Math.random() * (window.innerWidth - 100),
-      y: Math.random() * (window.innerHeight - 100),
-      speedX: Math.random() * 5 - 2.5,
-      speedY: Math.random() * 5 - 2.5,
-    }));
-  };
-
   useEffect(() => {
     if (isPlaying) {
       const interval = setInterval(() => {
         setGameObjects((prev) =>
           prev.map((obj) => ({
             ...obj,
-            x: (obj.x + obj.speedX + window.innerWidth) % window.innerWidth,
-            y: (obj.y + obj.speedY + window.innerHeight) % window.innerHeight,
+            x: (obj.x + obj.speedX +1000) % 1000,
+            y: (obj.y + obj.speedY + 400) % 400,
           }))
         );
       }, 50);
@@ -71,10 +97,21 @@ const Hero = () => {
     }
   }, [isPlaying]);
 
-  const handleObjectClick = (id) => {
-    setGameObjects((prev) => prev.filter((obj) => obj.id !== id));
-    setScore((prev) => prev + 1);
-  };
+  useEffect(() => {
+    if (fragments.length > 0) {
+      const interval = setInterval(() => {
+        setFragments((prev) =>
+          prev.map((fragment) => ({
+            ...fragment,
+            x: fragment.x + fragment.speedX,
+            y: fragment.y + fragment.speedY,
+          }))
+        );
+      }, 30);
+
+      return () => clearInterval(interval);
+    }
+  }, [fragments]);
 
   const endGame = () => {
     setIsPlaying(false);
@@ -82,10 +119,11 @@ const Hero = () => {
       setHighScore(score);
     }
     setGameObjects([]);
+    setFragments([]); 
   };
 
   return (
-    <div className="container">
+    <div className={s.container}>
       <div className={s.wrapper}>
         <img className={s.anal} src="/analogue.png" alt="" />
         <div className={s.text}>
@@ -116,7 +154,9 @@ const Hero = () => {
             <p>Score: {score}</p>
             <p className={s.highScore}>BEST: {highScore}</p>
             <p>Time: {timer}s</p>
-            <button className={s.playful_btn} onClick={endGame}>Exit</button>
+            <button className={`${s.exit_btn}`} onClick={endGame}>
+              Exit
+            </button>
           </div>
           {gameObjects.map((obj) => (
             <img
@@ -129,7 +169,22 @@ const Hero = () => {
                 top: obj.y,
                 position: 'absolute',
               }}
-              onClick={() => handleObjectClick(obj.id)}
+              onClick={() => handleObjectClick(obj.id, obj.x, obj.y, obj.src)}
+            />
+          ))}
+          {fragments.map((fragment) => (
+            <img
+              key={fragment.id}
+              src={fragment.src}
+              alt={`fragment ${fragment.id}`}
+              className={s.fragment}
+              style={{
+                left: fragment.x,
+                top: fragment.y,
+                position: 'absolute',
+                width: '50px', 
+                height: '50px',
+              }}
             />
           ))}
         </div>

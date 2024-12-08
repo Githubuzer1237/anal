@@ -1,102 +1,5 @@
-// .anal {
-//    width: 100%;
-//    max-width: 750px;
-//    margin: 0 auto;
 
-
-// }
-
-
-// .playful_btn {
-//    position: relative;
-//   display: inline-block;
-// //   padding: 15px 25px;
-// padding: 5px 10px;
-// //   font-size: 16px;
-// font: 500 40.297px / 44.3267px MetroSans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-//   font-weight: bold;
-//   color: black;
-//   background-color: white;
-//   border: 2px solid black;
-//   border-radius: 10px;
-//   box-shadow: 0 14px 0px black; 
-//   cursor: pointer;
-//   transition: transform 0.2s, box-shadow 0.2s; 
-// }
-
-// .playful_btn:hover {
-//    transform: translateY(2px); 
-//  }
- 
-//  .playful_btn:active {
-//    transform: translateY(6px); 
-//    box-shadow: none; 
-//  }
-
-//  .text {
-//     p {
-//       font: 500 40.297px / 44.3267px MetroSans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-// text-transform: uppercase;
-// text-align: center;
-
-//     }
-//  }
-
-//  .wrapper {
-//    display: flex;
-//    flex-direction: column;
-
-//    padding-top: 120px;
-//  }
-
-//  .brand {
-//    padding: 5px;
-//    border: 1px solid black;
-//    border-radius: 50%;
-//  }
-
-//  .img {
-//    width: 50px;
-//    height: 80px;
-//    padding-top: 40px;
-//  }
-
-// .studio {
-//    color: transparent; 
-//   -webkit-text-stroke: 1px black; 
-//   text-decoration: underline;
-// }
-// .second {
-//    margin-top: 20px;
-// }
-// .world {
-
-//    .orbit {
-//       position: absolute;
-//       width: 100px;
-
-//       @media (max-width:900px) {
-//         display: none;
-//       }
-      
-//    }
-// }
-
-// .gameObject {
-//   width: 100px;
-//   height: 100px;
-// }
-// /* Это для применения кастомного курсора в CSS */
-// .gameArea {
-//   cursor: url('/cursor.svg'), auto;
-// }
-
-
-
-.container {
-  position: relative;
-}
-
+  
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -106,6 +9,7 @@
 .anal {
   width: 100%;
   max-width: 750px;
+  
   margin: 0 auto;
 }
 
@@ -119,7 +23,7 @@
   background-color: white;
   border: 2px solid black;
   border-radius: 10px;
-  box-shadow: 0 14px 0px black;
+  box-shadow: 10px 14px 0px black;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -129,7 +33,7 @@
 }
 
 .playful_btn:active {
-  transform: translateY(6px);
+  transform: translateY(8px);
   box-shadow: none;
 }
 
@@ -178,23 +82,28 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  // cursor: url(/aim_cursor.svg);
+  cursor: url(/aim_cursor.svg) 25 25,  auto ;
+
+
   align-items: center;
   height: 100%;
-  pointer-events: none; 
+  // pointer-events: none; 
   z-index: 2;
 }
 
 .gameObject {
   position: absolute;
-  width: 100px;
+  width: 200px;
   height: 100px;
+
   pointer-events: all; 
-  cursor: pointer;
+  // cursor: pointer;
 }
 
 .scoreBoard {
 display: flex;
-// z-index: 10;
+z-index: 999;
 justify-content: center;
 align-items: center;
 gap: 20px;
@@ -245,6 +154,44 @@ p {
       background-color: peru;
       }
 }
-.gameArea {
-  cursor: url('/cursor.svg'), auto;
+// .gameArea {
+//   cursor: url('/cursor.svg'), auto;
+// }
+.exit_btn {
+  z-index: 1000; 
+  top: 20px;
+  right: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #ff5c5c;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.exit_btn:hover {
+  background-color: #ff2d2d;
+}
+
+.exit_btn:active {
+  background-color: #b32424;
+}
+.fragment {
+  pointer-events: none;
+  transform: scale(0.5);
+  opacity: 1;
+  animation: fragmentAnimation 1s forwards;
+}
+
+@keyframes fragmentAnimation {
+  0% {
+    opacity: 1;
+    // transform: scale(1) translate(0, 0);
+  }
+  100% {
+    opacity: 0;
+    // transform: scale(0) translate(100px, 100px);
+  }
 }

@@ -19,7 +19,7 @@
  .header {
    padding: 20px;
    position: fixed;
-   max-width: 1300px;
+  //  max-width: 1300px;
    width: 100%;
    background-color: #fff;
    z-index: 3;
@@ -95,7 +95,7 @@
    background-color: white;
    border: 2px solid black;
    border-radius: 10px;
-   box-shadow: 0 14px 0px black;
+   box-shadow: 10px 14px 0px black;
    cursor: pointer;
    transition: transform 0.2s, box-shadow 0.2s;
  }
@@ -105,7 +105,7 @@
  }
  
  .playful_btn:active {
-   transform: translateY(6px);
+   transform: translateY(8px);
    box-shadow: none;
  }
  

@@ -1,10 +1,11 @@
 import React from 'react'
-import './Home.css'
 import Hero from '../components/Hero/Hero'
+import Windows from '../components/Windowsm/Windows'
 const Home = () => {
   return (
   <>
   <Hero />
+  <Windows />
   </>
   )
 }
