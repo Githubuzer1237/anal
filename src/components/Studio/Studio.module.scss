@@ -1,0 +1,61 @@
+.studio {
+    padding: 140px;
+     position: relative;
+    overflow: hidden;
+
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60dvh;
+    transition: 1s;
+
+}
+.title {
+    font-size: clamp(2.5rem, -1.3776rem + 19.3878vw, 14.375rem);
+    line-height: 1;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 200;
+
+}
+
+.image {
+    width: 400px;
+    pointer-events: none;
+    cursor: pointer;
+    z-index: 4;
+    transition: 1s;
+    animation: scaleInOut 1s ease-out forwards;  // Добавление анимации для появления и исчезновения
+  opacity: 0;
+}
+.visible {
+    animation: scaleIn 0.5s ease-out forwards;
+  }
+  
+  .hidden {
+    animation: scaleOut 0.5s ease-in forwards;
+  }
+  
+  @keyframes scaleIn {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes scaleOut {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(0);
+      opacity: 0;
+    }
+  }

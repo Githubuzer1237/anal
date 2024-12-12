@@ -6,10 +6,10 @@ const Windows = () => {
     <>
       <div className="container">
       <div className={s.windows}>
-  <Window  special="Azim Makhmov" windowtext="Analogue are creative  MAGICIANS"h1="error 404" />
-  <Window special="Aleksandr Martin" windowtext="JUST WOW!!! " />
-  <Window special="Bobur" windowtext="JUST WOW!!! " bgcolor="pink"  />
-  <Window special="Odil" windowtext="JUST WOW!!! " />
+  <Window positionx={700} positiony={400}  special="Azim Makhmov" windowtext="Analogue are creative  MAGICIANS"h1="error 404" />
+  <Window positionx={200} positiony={300} special="Aleksandr Martin" windowtext="JUST WOW!!! Made our Friday and worth every minute! " />
+  <Window positionx={300} positiony={150} special="Bobur" windowtext="LOVE WORKING WITH THEM " bgcolor="pink"  />
+  <Window positionx={600} positiony={200} special="Odil" windowtext="JUST WOW!!! " />
 
 
   </div>

@@ -26,7 +26,7 @@ const Header = () => {
           <div className={`${s.links} ${active ? s.active : ''}`}>
             <Link onClick={closeMenu} to={'/'}>WORK</Link>
             <Link onClick={closeMenu} to={'/'}>SERVICES</Link>
-            <Link onClick={closeMenu} to={'/'}>STUDIO</Link>
+            <Link onClick={closeMenu} to={'/studio'}>STUDIO</Link>
             <Link onClick={closeMenu} to={'/'}>SHOP</Link>
           </div>
 
