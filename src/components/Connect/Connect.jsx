@@ -8,7 +8,17 @@ const Connect = ({h1, br, text, btn}) => {
    <div className={s.connect}>
     <div className="container">
       <div className={s.wrapper}>
-       <h1> {h1} </h1>
+       <motion.h1
+       drag
+       dragConstraints={{
+         top: -100,
+         left: -100,
+         right: 100,
+         bottom: 100,
+       }}
+       whileDrag={{ rotate: 20 }}
+       >
+         {h1} </motion.h1>
    
       <div className={s.second}>
        <motion.img 
@@ -35,11 +45,31 @@ const Connect = ({h1, br, text, btn}) => {
          right: 100,
          bottom: 100,
        }}
-       whileDrag={{ rotate: 100 }}>
+       whileDrag={{ rotate: 20 }}>
         {br}
         </motion.h1>
-       <button>{btn}</button>
-       <p>{text}</p>
+       <motion.button 
+       drag
+       dragConstraints={{
+         top: -100,
+         left: -100,
+         right: 100,
+         bottom: 100,
+       }}
+       whileDrag={{ rotate: 100 }}
+         >
+          {btn}</motion.button>
+       <motion.p
+       drag
+       dragConstraints={{
+         top: -100,
+         left: -100,
+         right: 100,
+         bottom: 100,
+       }}
+       whileDrag={{ rotate: 0 }}
+       >
+        {text}</motion.p>
        </div>
 
       </div>
