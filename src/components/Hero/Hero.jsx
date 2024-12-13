@@ -36,8 +36,8 @@ const Hero = () => {
     return images.map((src, index) => ({
       id: index,
       src,
-      x: Math.random() * (1000 - 100),
-      y: Math.random() * (400 - 100),
+      x: Math.random() * (1900 - 100),
+      y: Math.random() * (900 - 100),
       speedX: Math.random() * 15 - 15,
       speedY: Math.random() * 15 - 15,
     }));
@@ -88,8 +88,8 @@ const Hero = () => {
         setGameObjects((prev) =>
           prev.map((obj) => ({
             ...obj,
-            x: (obj.x + obj.speedX +1000) % 1000,
-            y: (obj.y + obj.speedY + 400) % 400,
+            x: (obj.x + obj.speedX +1900) % 1900,
+            y: (obj.y + obj.speedY + 900) % 900,
           }))
         );
       }, 50);

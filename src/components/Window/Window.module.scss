@@ -3,7 +3,7 @@
  .window {
    // position: absolute; 
    position: relative;
-   max-width: 500px;
+   max-width: 600px;
    width: 100%;
    height: 200px; 
    cursor: grab;
@@ -17,22 +17,16 @@
  
  .header {
    color: white; 
+   background-color: black;
    padding: 10px; 
    display: flex; 
    justify-content: space-between; 
    align-items: center; 
    border-top-left-radius: 8px; 
    border-top-right-radius: 8px; 
-   animation: error 0.1s infinite ;
+   border: 2px solid black;
  }
- @keyframes error {
-   from {
-      background-color: #fff;
-   }
-   to {
-      background-color: black;
-   }
- }
+
  
  .closeButton {
    background-color: #fff;
@@ -62,4 +56,36 @@
  }
  .pink {
    background-color: pink;
+   animation: error 0.3s infinite ;
+
+
+   @keyframes error {
+    from {
+      background-color: #fff;
+    }
+    to {
+      background-color: rgb(246, 121, 121);
+    }
+   }
  }
+
+
+
+
+ .window {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.window.resetting {
+  transform: scale(0);
+  opacity: 0;
+}
+
+.window:not(.resetting) {
+  transform: scale(1);
+  opacity: 1;
+}
+.btns {
+  display: flex;
+  gap: 10px;
+}

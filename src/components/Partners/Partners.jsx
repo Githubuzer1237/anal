@@ -19,7 +19,7 @@ const Partners = () => {
                   right: 100,
                   bottom: 100,
                 }}
-                whileDrag={{ rotate: 360 }}
+                whileDrag={{ rotate: 120 }}
                 style={{
                   width: 300,
                   height: 150,

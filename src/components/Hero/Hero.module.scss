@@ -3,7 +3,7 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  padding-top: 120px;
+  padding-top: 200px;
 }
 
 .anal {
@@ -26,6 +26,10 @@
   box-shadow: 10px 14px 0px black;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
+
+  @media (max-width: 900px) {
+    display: none;
+  }
 }
 
 .playful_btn:hover {

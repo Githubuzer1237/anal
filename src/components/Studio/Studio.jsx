@@ -10,10 +10,10 @@ const Studio = () => {
     '/academy5.jpg',
 
     
-  ]; // Массив путей к картинкам
+  ];
 
-  const [images, setImages] = useState([]); // Хранит массив картинок с позициями и типами
-  const lastPosRef = useRef({ x: 0, y: 0 }); // Хранит последнюю добавленную позицию
+  const [images, setImages] = useState([]); 
+  const lastPosRef = useRef({ x: 0, y: 0 }); 
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
@@ -23,25 +23,20 @@ const Studio = () => {
       Math.pow(clientX - lastPos.x, 2) + Math.pow(clientY - lastPos.y, 2)
     );
 
-    // Если перемещение мыши превышает 200px
     if (distance >= 200) {
-      lastPosRef.current = { x: clientX, y: clientY }; // Обновляем последнюю позицию
+      lastPosRef.current = { x: clientX, y: clientY };
 
-      // Выбираем случайное изображение из массива
       const randomImage = imagesArray[Math.floor(Math.random() * imagesArray.length)];
 
-      // Создаем новый объект картинки
       const newImage = {
-        id: Date.now(), // Уникальный идентификатор
+        id: Date.now(),
         src: randomImage,
         x: clientX,
         y: clientY,
       };
 
-      // Добавляем картинку в массив
       setImages((prevImages) => [...prevImages, newImage]);
 
-      // Удаляем картинку через 1 секунду с эффектом исчезновения
       setTimeout(() => {
         setImages((prevImages) =>
           prevImages.map((img) =>
@@ -49,12 +44,11 @@ const Studio = () => {
           )
         );
 
-        // Удаляем картинку из DOM через дополнительное время для завершения анимации
         setTimeout(() => {
           setImages((prevImages) =>
             prevImages.filter((img) => img.id !== newImage.id)
           );
-        }, 500); // Дополнительные 500ms для завершения CSS-анимации
+        }, 500); 
       }, 1000);
     }
   };
@@ -66,15 +60,15 @@ const Studio = () => {
     >
       <div className="container">
         <div className={s.wrapper}>
-          <h1 className={s.title}>ANALOGUE STUDIO</h1>
+          <h1 className={s.title}>academy studio</h1>
         </div>
 
         {images.map((image) => (
         <img 
           key={image.id}
-          src={image.src} // Подставляем путь к случайному изображению
+          src={image.src} 
           alt="Cursor Image"
-          className={`${s.image} ${image.visible !== false ? s.visible : s.hidden}`} // Динамическое назначение классов
+          className={`${s.image} ${image.visible !== false ? s.visible : s.hidden}`} 
           style={{
             position: 'absolute',
             top: image.y,
