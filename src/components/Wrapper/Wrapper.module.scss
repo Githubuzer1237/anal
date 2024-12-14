@@ -1,0 +1,76 @@
+.wrappersect {
+    h1 {
+        font-size: clamp(1.875rem, 1.2421rem + 3.1646vw, 5rem);
+
+        line-height: 1;
+        text-transform: uppercase;
+        font-weight: lighter;
+       max-width: 500px;
+       width: 100%;    
+        }
+    padding: 120px;
+}
+.wrapper {
+display: grid;
+grid-template-columns: repeat(2, 1fr);
+align-items: center;
+
+gap: 120px;
+
+@media (max-width: 1200px) {
+    grid-template-columns: 1fr;
+}
+
+:nth-child(1) {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    p {
+        border: 3px solid black;
+        border-radius: 50px;
+        width: max-content;
+        padding: 10px;
+        letter-spacing: 3px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+}
+:nth-child(2) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    p {
+            font-size: 28px;
+
+            a {
+                color: black;
+                text-decoration: none;
+                transition: 0.5s;
+
+                position: relative;
+             
+
+                
+            }
+
+            a::after {
+                content: '';
+                position: absolute;
+                bottom: 0; 
+                left: 0;
+                width: 160px; 
+                height: 2px; 
+                background-color: black;
+                transform: scaleX(1);
+                transform-origin: bottom left; 
+                transition: transform 0.5s ease-out; 
+            }
+            
+            a:hover::after {
+                transform: scaleX(0); 
+            }
+    }
+}
+}

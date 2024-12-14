@@ -8,6 +8,18 @@ const Studio = () => {
     '/academy3.jpg',
     '/academy4.jpg',
     '/academy5.jpg',
+    '/academy6.jpg',
+    '/academy7.jpg',
+    '/academy8.jpg',
+    '/academy9.jpg',
+    '/academy10.jpg',
+    '/academy11.jpg',
+    '/academy12.jpg',
+    '/academy13.jpg',
+    '/academy14.jpg',
+
+
+
 
     
   ];

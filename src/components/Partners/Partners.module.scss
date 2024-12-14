@@ -3,6 +3,17 @@
     flex-direction: column;
     align-items: center;
    padding: 120px;
+   h1 {
+
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: sans-serif;
+    font: 500 40.297px / 44.3267px MetroSans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    text-transform: uppercase;
+    text-align: center;
+}
 }
 
 .photo {
@@ -19,17 +30,7 @@
         justify-content: center;
     }
 }
-h1 {
 
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: sans-serif;
-    font: 500 40.297px / 44.3267px MetroSans, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    text-transform: uppercase;
-    text-align: center;
-}
 .drag1 {
     background-image: url('/draggable1.gif');
     
