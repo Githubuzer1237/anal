@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './Partners.module.scss';
-import Draggable from 'react-draggable';
 import { motion } from 'framer-motion';
 
 const Partners = () => {

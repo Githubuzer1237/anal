@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import NotFoundPage from "./pages/NotFoundPage";
 import StudioPage from "./pages/StudioPage";
 import Loader from "./components/Loader/Loader";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   const location = useLocation();
@@ -47,7 +48,13 @@ const App = () => {
                 element={<NotFoundPage />}
               />
             </Routes>
+
+            <Footer />
+         
+
           </motion.div>
+   
+
         )}
       </AnimatePresence>
     </>

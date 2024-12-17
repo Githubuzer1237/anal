@@ -1,0 +1,86 @@
+.svg {
+   width: 100%;
+   max-width: 400px;
+   animation: rotate 10s infinite ;
+
+   @media (max-width: 1000px) {
+      display: none;
+   }
+}
+
+@keyframes rotate {
+   from {
+      rotate: 0deg;
+   }
+   to {
+      rotate: 360deg;
+   }
+}
+.wrapper {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 120px;
+}
+
+.footer {
+  padding: 120px;
+}
+
+.form {
+   display: flex;
+   flex-direction: column  ;
+   gap: 40px;
+   padding: 50px;
+   border: 2px solid black;
+   border-radius: 40px;
+   max-width: 800px;
+   width: 100%;
+
+   h1 {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+   }
+
+   input {
+      max-width: 500px;
+      width: 100%;
+      padding: 20px;
+      border-radius: 20px;
+
+   }
+
+   button {
+      max-width: 100px;
+      width: 100%;
+      padding: 20px;
+      border-radius: 20px;
+      background-color: #fff;
+   }
+}
+
+.real_footer {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   :nth-child(1) {
+      display: flex;
+      gap: 30px;
+      align-items: center;
+
+      a {
+         text-decoration: none;
+         color: black;
+      }
+   }
+
+   @media (max-width: 1500px) {
+      flex-direction: column;
+      gap: 40px;
+   }
+}
+
+.logo {
+   width: 50px;
+
+}
