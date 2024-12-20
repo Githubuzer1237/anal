@@ -3,11 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   font-family: Arial, Helvetica, sans-serif;
+  scroll-behavior: smooth;
 }
 .container {
   margin: 0 auto;
   max-width: 1400px;
   padding: 0 15px;
 }
-
-

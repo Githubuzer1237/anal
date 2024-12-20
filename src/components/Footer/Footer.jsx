@@ -25,7 +25,7 @@ const Footer = () => {
   };
 
   return (
-    <div className={s.footer}>
+    <div id='connect_sect' className={s.footer}>
       <div className="container">
         <div className={s.wrapper}>
           <img className={s.svg} src="/round_text.svg" alt="" />
